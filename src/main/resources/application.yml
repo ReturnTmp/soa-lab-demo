@@ -4,6 +4,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 111111
+  #  hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update
+    # 打印SQL语句
+    show-sql: true
 
 mybatis-plus:
   configuration:
