@@ -4,6 +4,7 @@ public class Result {
     private int code = 200;
     private String msg = "操作成功";
     private Object data;
+    private Object link;
 
     public Result(int code, String msg) {
         this.code = code;
@@ -36,5 +37,13 @@ public class Result {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public Object getLink() {
+        return link;
+    }
+
+    public void setLink(Object link) {
+        this.link = link;
     }
 }

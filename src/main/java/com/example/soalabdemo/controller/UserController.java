@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+//也就是在data里面加link字符串就好,可以使用json和String的转换.
 @Api
 @RestController
 public class UserController {
@@ -15,16 +16,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    String link;
+
+
+
     @PostMapping("user")
     @ApiOperation(value = "添加用户")
     public Result addUser(User user) {
-        return userService.addUser(user);
+        Result result = userService.addUser(user);
+        String id = "http://localhost:8080/user";
+        result.setLink(id);
+        return result;
     }
 
     @GetMapping("user/{id}")
     @ApiOperation(value = "根据用户id获取用户信息")
     public Result queryUserById(@PathVariable("id") int userId) {
-        return userService.queryUserById(userId);
+        Result result = userService.queryUserById(userId);
+        String id = "http://localhost:8080/" + "user";
+        result.setLink(id);
+        return result;
     }
 
 //    @GetMapping("user")
@@ -42,12 +53,16 @@ public class UserController {
     @PutMapping("user")
     @ApiOperation(value = "修改用户信息")
     public Result modifyUser(User user) {
-        return userService.modifyUser(user);
+        Result result = userService.modifyUser(user);
+        String id = "http://localhost:8080/" + "user";
+        result.setLink(id);
+        return result;
     }
 
     @DeleteMapping("user/{id}")
     @ApiOperation(value = "根据用户id删除用户")
     public Result deleteUserById(@PathVariable("id") int userId) {
+
         return userService.deleteUserById(userId);
     }
 }
